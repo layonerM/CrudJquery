@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="stl.CSS">
+</head>
+<body>
+
+    <h1 class="titulo">Lista de Clientes</h1>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Formulario</h2>
+            <div class="input-group">
+                <label for="ident">ID:</label>
+                <input type="text" placeholder="Escribe tu ID" id="ident" required autofocus>
+            </div>
+            <div class="input-group">
+                <label for="name">Nombre:</label>
+                <input type="text" placeholder="Escribe tu nombre" id="name" required autofocus>
+            </div>
+            <div class="input-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" placeholder="Escribe tu apellido" id="apellido" required autofocus>
+            </div>
+            <div class="input-group">
+                <label for="email">Correo:</label>
+                <input type="email" placeholder="Escribe tu correo" id="email" required autofocus>
+            </div>
+            <div class="input-group">
+                <label for="pais">País:</label>
+                <input type="text" placeholder="Escribe tu país" id="pais" required autofocus>
+            </div>
+            <div class="input-group">
+                <label for="pasa">Pasatiempo:</label>
+                <input type="text" placeholder="Escribe tu pasatiempo" id="pasa" required autofocus>
+            </div>
+            <div class="edit"> 
+                <button id="enviar">Agregar</button>
+                <button id="editar">Editar</button>
+                <button id="eliminar">Borrar</button>
+            </div>
+        </div>
+
+        <div id="listas" class="list-container">
+            <div class="cabecera">
+                <h2 class="id">ID</h2>
+                <h2 class="nombre">Nombre</h2>
+                <h2>Apellido</h2>
+                <h2>Correo</h2>
+                <h2>País</h2>
+                <h2>Pasatiempo</h2>
+            </div>
+            <div class="listicas"> 
+
+            <ul id="personas"></ul>
+            <ul id="nombres"></ul>
+            <ul id="apellidos"></ul>
+            <ul id="emails"></ul>
+            <ul id="paises"></ul>
+            <ul id="pasas"></ul>
+        </div>
+        </div>
+    </div>
+
+   
+    <script>
+         $(document).ready(function () {
+             $("#enviar").click(function () {
+                 let ident = $("#ident").val();
+                 let name = $("#name").val();
+                 let apellido = $("#apellido").val();
+                 let email = $("#email").val();
+                 let pais = $("#pais").val();
+                 let pasa = $("#pasa").val();
+ 
+                 if (ident !== "") {
+                     $("#personas").append("<li>" + ident + "</li>");
+                     $("#ident").val("");
+                 } else {
+                     alert("Rellena el campo de ID.");
+                 }
+ 
+                 if (name !== "") {
+                     $("#nombres").append("<li>" + name + "</li>");
+                     $("#name").val("");
+                 } else {
+                     alert("Rellena el campo de nombre.");
+                 }
+ 
+                 if (apellido !== "") {
+                     $("#apellidos").append("<li>" + apellido + "</li>");
+                     $("#apellido").val("");
+                 } else {
+                     alert("Rellena el campo de apellido.");
+                 }
+ 
+                 if (email !== "") {
+                     $("#emails").append("<li>" + email + "</li>");
+                     $("#email").val("");
+                 } else {
+                     alert("Rellena el campo de correo.");
+                 }
+ 
+                 if (pais !== "") {
+                     $("#paises").append("<li>" + pais + "</li>");
+                     $("#pais").val("");
+                 } else {
+                     alert("Rellena el campo de país.");
+                 }
+ 
+                 if (pasa !== "") {
+                     $("#pasas").append("<li>" + pasa + "</li>");
+                     $("#pasa").val("");
+                 } else {
+                     alert("Rellena el campo de pasatiempo.");
+                 }
+             });
+
+             $("#editar").click(function () {
+                let nuevoValor = prompt("Introduce el nuevo valor:");
+                if (nuevoValor !== null) {
+                    let listaAEditar = prompt("Selecciona la lista a editar (personas, nombres, apellidos, emails, paises, pasas):");
+                    if (listaAEditar !== null) {
+                        if (listaAEditar === "personas" || listaAEditar === "nombres" || listaAEditar === "apellidos" || listaAEditar === "emails" || listaAEditar === "paises" || listaAEditar === "pasas") {
+                            let itemAEditar = prompt("Introduce el índice del elemento a editar (comenzando desde 0):");
+                            if (itemAEditar !== null) {
+                                if (itemAEditar >= 0) {
+                                    $("#" + listaAEditar + " li").eq(itemAEditar).text(nuevoValor);
+                                } else {
+                                    alert("Índice no válido.");
+                                }
+                            }
+                        } else {
+                            alert("Lista no válida.");
+                        }
+                    }
+                }
+                actualizarValorEnPantalla(listaAEditar, itemAEditar, nuevoValor);
+            });
+
+            function actualizarValorEnPantalla(lista, indice, valor) {
+                $("#" + lista + " li").eq(indice).text(valor);
+            }
+             
+             $("#eliminar").click(function () {
+                let pregunta = confirm("¿Estás seguro de eliminar esto?");
+
+                if (pregunta) {
+                    $("#listas ul").remove();
+                }
+             })
+         });
+     </script>
+</body>
+</html>

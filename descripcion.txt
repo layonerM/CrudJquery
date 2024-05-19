@@ -1,0 +1,12 @@
+Descripción del Código
+
+Este código HTML y JavaScript(Jquery) proporciona una aplicación CRUD (Crear, Leer, Actualizar, Borrar) simple para gestionar una lista de clientes. La página presenta un formulario para agregar nuevos clientes y una lista de clientes existentes que se pueden editar o eliminar.
+
+Cuando hago clic en "Agregar", el script valida y agrega la información ingresada a la lista de clientes. Se valida que todos los campos estén completos y muestra una alerta si no lo están. Cada campo del formulario (ID, Nombre, Apellido, Correo, País, Pasatiempo) se agrega a su respectiva lista.
+
+El botón "Editar" me permite cambiar el valor de un elemento de la lista. Selecciono un elemento para editar y luego actualizo la información en la lista según mi entrada.
+
+El botón "Borrar" elimina toda la lista de clientes después de confirmar la acción con una ventana emergente de confirmación.
+
+Este código utiliza jQuery para simplificar la manipulación del DOM y la interactividad de la página, haciendo que mi experiencia como usuario sea más fluida.
+
